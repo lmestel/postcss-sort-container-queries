@@ -1,59 +1,49 @@
-# PostCSS Sort Media Queries
+# PostCSS Sort Container Queries
 
 [PostCSS]:          https://github.com/postcss/postcss
-[ci-img]:           https://travis-ci.org/solversgroup/postcss-sort-media-queries.svg
-[ci]:               https://travis-ci.org/solversgroup/postcss-sort-media-queries
-[MIT]:              https://github.com/solversgroup/postcss-sort-media-queries/blob/master/LICENSE
+[MIT]:              https://github.com/lmestel/postcss-sort-container-queries/blob/master/LICENSE
 [official docs]:    https://github.com/postcss/postcss#usage
-[Releases history]: https://github.com/solversgroup/postcss-sort-media-queries/blob/master/CHANGELOG.md
 
-[![npm](https://img.shields.io/npm/v/postcss-sort-media-queries.svg)](https://www.npmjs.com/package/postcss-sort-media-queries) [![Build Status][ci-img]][ci]
-[![npm](https://img.shields.io/npm/dt/postcss-sort-media-queries.svg)](https://www.npmjs.com/package/postcss-sort-media-queries)
+[PostCSS] plugin for combine and sort CSS container queries with **mobile first** or **desktop first** methods.
 
-[PostCSS] plugin for combine and sort CSS media queries with **mobile first** or **desktop first** methods.
+> **Combine** same container queries into one - is a unexpected side effect for this plugin 🧬
 
-> **Combine** same media queries into one - is a unexpected side effect for this plugin 🧬
-
-## Online demo
-
-And here is the [online demo](https://postcss-sort-media-queries.github.io)
-
-## Examples
+# Examples
 
 ### Mobile first sorting
 
 ```css
 /* before */
-@media screen and (max-width: 640px) {
+@container size(max-width: 640px) {
   .head { color: #cfcfcf }
 }
-@media screen and (max-width: 768px) {
+@container size(max-width: 768px) {
   .footer { color: #cfcfcf }
 }
-@media screen and (max-width: 640px) {
+@container size(max-width: 640px) {
   .main { color: #cfcfcf }
 }
-@media screen and (min-width: 1280px) {
+@container size(min-width: 1280px) {
   .mobile-first { color: #cfcfcf }
 }
-@media screen and (min-width: 640px) {
+@container size(min-width: 640px) {
   .mobile-first { color: #cfcfcf }
 }
-@media screen and (max-width: 640px) {
+@container size(max-width: 640px) {
   .footer { color: #cfcfcf }
 }
 
 /* after */
-@media screen and (min-width: 640px) {
+@container size(min-width: 640px) {
   .mobile-first { color: #cfcfcf }
 }
-@media screen and (min-width: 1280px) {
+@container size(min-width: 1280px) {
   .mobile-first { color: #cfcfcf }
 }
-@media screen and (max-width: 768px) {
+@container size(max-width: 768px) {
   .footer { color: #cfcfcf }
 }
-@media screen and (max-width: 640px) {
+@container size(max-width: 640px) {
   .head { color: #cfcfcf }
   .main { color: #cfcfcf }
   .footer { color: #cfcfcf }
@@ -64,38 +54,38 @@ And here is the [online demo](https://postcss-sort-media-queries.github.io)
 
 ```css
 /* before */
-@media screen and (max-width: 640px) {
+@container size(max-width: 640px) {
   .header { color: #cdcdcd }
 }
-@media screen and (min-width: 760px) {
+@container size(min-width: 760px) {
   .desktop-first { color: #cdcdcd }
 }
-@media screen and (max-width: 640px) {
+@container size(max-width: 640px) {
   .main { color: #cdcdcd }
 }
-@media screen and (min-width: 1280px) {
+@container size(min-width: 1280px) {
   .desktop-first { color: #cdcdcd }
 }
-@media screen and (max-width: 760px) {
+@container size(max-width: 760px) {
   .footer { color: #cdcdcd }
 }
-@media screen and (max-width: 640px) {
+@container size(max-width: 640px) {
   .footer { color: #cdcdcd }
 }
 
 /* after */
-@media screen and (max-width: 760px) {
+@container size(max-width: 760px) {
   .footer { color: #cdcdcd }
 }
-@media screen and (max-width: 640px) {
+@container size(max-width: 640px) {
   .header { color: #cdcdcd }
   .main { color: #cdcdcd }
   .footer { color: #cdcdcd }
 }
-@media screen and (min-width: 760px) {
+@container size(min-width: 760px) {
   .desktop-first { color: #cdcdcd }
 }
-@media screen and (min-width: 1280px) {
+@container size(min-width: 1280px) {
   .desktop-first { color: #cdcdcd }
 }
 ```
@@ -105,7 +95,7 @@ And here is the [online demo](https://postcss-sort-media-queries.github.io)
 First thing's, install the module:
 
 ```
-npm install postcss postcss-sort-media-queries --save-dev
+npm install postcss postcss-sort-container-queries --save-dev
 ```
 
 ## 🍳 Usage
@@ -119,7 +109,7 @@ If you already use PostCSS, add the plugin to plugins list:
 ```diff
 module.exports = {
   plugins: [
-+   require('postcss-sort-media-queries')({
++   require('postcss-sort-container-queries')({
 +     // sort: 'mobile-first' default value
 +     sort: function(a, b) {
 +        // custom sorting function
@@ -149,7 +139,7 @@ This option support **string** or **function** values.
 
 ```js
 postcss([
-  sortMediaQueries({
+  sortContainerQueries({
     sort: 'mobile-first' // default
   })
 ]).process(css);
@@ -159,7 +149,7 @@ postcss([
 
 ```js
 postcss([
-  sortMediaQueries({
+  sortContainerQueries({
     sort: 'desktop-first'
   })
 ]).process(css);
@@ -168,7 +158,7 @@ postcss([
 #### Custom sort function
 ```js
 postcss([
-  sortMediaQueries({
+  sortContainerQueries({
     function(a, b) {
       return a.localeCompare(b);
     }
@@ -176,9 +166,9 @@ postcss([
 ]).process(css);
 ```
 
-In this example, all your media queries will sort by A-Z order.
+In this example, all your container queries will sort by A-Z order.
 
-This sorting function is directly passed to Array#sort() method of an array of all your media queries.
+This sorting function is directly passed to Array#sort() method of an array of all your container queries.
 
 ### Sort configuration
 
@@ -186,7 +176,7 @@ By this configuration you can control sorting behaviour.
 
 ```js
 postcss([
-  sortMediaQueries({
+  sortContainerQueries({
     configuration: {
       unitlessMqAlwaysFirst: true, // or false
     }
@@ -197,10 +187,6 @@ postcss([
 Or alternatively create a `sort-css-mq.config.json` file in the root of your project. Or add property `sortCssMQ: {}` in your `package.json`.
 
 ---
-
-## Changelog
-
-See [Releases history]
 
 ## License
 

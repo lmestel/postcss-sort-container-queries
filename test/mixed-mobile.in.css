@@ -1,30 +1,18 @@
-@media tv {
+@container size(min-width: 1280px) {
   .mm { color: #fff }
 }
-@media print and (orientation: landscape) {
+@container size(max-width: 640px) {
   .mm { color: #fff }
 }
-@media screen and (min-width: 1280px) {
+@container size(orientation: landscape) {
   .mm { color: #fff }
 }
-@media screen and (max-width: 640px) {
+@container size(orientation: portrait) {
   .mm { color: #fff }
 }
-@media screen and (orientation: landscape) {
+@container size(min-width: 768px) {
   .mm { color: #fff }
 }
-@media print {
-  .mm { color: #fff }
-}
-@media screen and (orientation: portrait) {
-  .mm { color: #fff }
-}
-@media screen and (min-width: 768px) {
-  .mm { color: #fff }
-}
-@media screen and (max-width: 1280px) {
-  .mm { color: #fff }
-}
-@media print and (orientation: portrait) {
+@container size(max-width: 1280px) {
   .mm { color: #fff }
 }

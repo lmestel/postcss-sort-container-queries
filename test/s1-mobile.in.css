@@ -1,24 +1,24 @@
-@media screen and (max-width: 640px) {
+@container size(max-width: 640px) {
   .s1m { color: #ccc }
 }
-@media screen and (min-width: 980px) {
+@container size(min-width: 980px) {
   .s1m { color: #ccc }
 }
-@media screen and (max-width: 980px) {
+@container size(max-width: 980px) {
   .s1m { color: #ccc }
 }
-@media screen and (max-width: 768px) {
+@container size(max-width: 768px) {
   .s1m { color: #ccc }
 }
-@media screen and (min-width: 640px) {
+@container size(min-width: 640px) {
   .s1m { color: #ccc }
 }
-@media screen and (min-width: 1280px) {
+@container size(min-width: 1280px) {
   .s1m { color: #ccc }
 }
-@media screen and (min-width: 768px) {
+@container size(min-width: 768px) {
   .s1m { color: #ccc }
 }
-@media screen and (max-width: 1280px) {
+@container size(max-width: 1280px) {
   .s1m { color: #ccc }
 }

@@ -20,12 +20,12 @@ module.exports = (opts = {}) => {
   const sortCSSmq = opts.configuration ? createSort(opts.configuration) : require('sort-css-media-queries');
 
   return {
-    postcssPlugin: 'postcss-sort-media-queries',
+    postcssPlugin: 'postcss-sort-container-queries',
     OnceExit (root, { AtRule }) {
 
       let atRules = [];
 
-      root.walkAtRules('media', atRule => {
+      root.walkAtRules('container', atRule => {
         let query = atRule.params
 
         if (!atRules[query]) {
